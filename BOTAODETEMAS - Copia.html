@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alternar Tema</title>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    .toggle-container {
+      margin-top: 80px;
+      margin-left: 600px;
+      display: flex;
+      align-items: center;
+      background-color: #0379ff;
+      border-radius: 20px;
+      padding: 6px 8px;
+      width: 98px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .icon {
+      font-size: 16px;
+      color: white;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .label {
+      margin-left: auto;
+      font-size: 12px;
+      color: white;
+      transition: color 0.3s;
+    }
+
+    /* Modo Claro */
+    .toggle-container.light {
+      background-color: #eee;
+    }
+
+    .toggle-container.light .icon {
+      color: #f39c12;
+      transform: rotate(180deg);
+    }
+
+    .toggle-container.light .label {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toggle-container" id="toggle">
+    <i class="fas fa-moon icon" id="icon"></i>
+    <div class="label" id="label"> modo noturno</div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('toggle');
+    const icon = document.getElementById('icon');
+    const label = document.getElementById('label');
+    const body = document.body;
+
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('light');
+      const isLight = toggle.classList.contains('light');
+
+      icon.className = isLight ? 'fas fa-sun icon' : 'fas fa-moon icon';
+      label.textContent = isLight ? ' modo claro' : ' modo noturno';
+
+      body.style.background = isLight ? '#fdf6e3' : '#121212';
+      body.style.color = isLight ? '#111' : '#f1f1f1';
+    });
+  </script>
+
+</body>
+</html>

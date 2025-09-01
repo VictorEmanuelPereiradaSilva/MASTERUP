@@ -1,0 +1,932 @@
+i'xc<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100vh;
+            min-height: 100vh; /* permite que a altura aumente com o conteúdo */
+            background: url('') no-repeat center center fixed;
+            background-size: cover;
+            padding: 150px;
+            position: relative;
+            background-color: #0056b3;
+            overflow-y: auto; /* pro conteúdo na página não transbordar */
+        }
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+     
+   .video-fundo {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.video-fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.conteudo-inicial {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    top: 40%;
+    transform: translateY(-40%);
+}
+
+
+
+        .cadastro-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 25px;  
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            width: 800px;
+            position: relative;
+            margin: 30px 150px 90px 40px;  /* Espaçamento externo: 10px topo, 200px direita, 30px baixo, 40px esquerda */
+            margin-top: 90px;
+        }
+
+        .cadastro-container h2 {
+            position: fixed;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 34px;
+            text-align: right;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(41, 41, 41, 0.2);
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:hover {
+            border: 2px solid #0077ff;           /* Cor destacada */
+            border-radius: 10px;                 /* Bordas arredondadas */
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: border 0.3s, background-color 0.3s;
+        }
+
+        .input-group input:focus {
+            border: 2px solid #0077ff;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            outline: none;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            padding-left: 40px;
+            border: none;
+            border-radius: 0;
+            outline: none;
+            background: rgba(179, 179, 179, 0.1);
+            color: #fff;
+            font-size: 12px;
+            border: 1px solid #3d3d3d;
+            border-radius: 9px; /* deixa as bordas suavemente arredondadas */
+        }
+
+        .input-group input::placeholder {
+            color: rgba(145, 145, 145, 0.7);
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .lado-a-lado {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lado-a-lado .input-group {
+            flex: 1;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-login {
+            background: #0032bb;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #024996;
+            transform: scale(0.99); /* para afundar quando clicar */
+        }
+
+        .forgot-password, .register-link {
+            display: block;
+            margin-top: 10px;
+            color: #0258b4;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .forgot-password:hover, .register-link:hover {
+            color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(15, 15, 15, 0.1);
+        }
+
+        .register-link {
+            font-weight: bold;
+            margin-top: 1px;
+        }
+        
+        .h3 {
+            font-family: "Roboto", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: weight;
+            font-style: normal;
+            font-variation-settings:"wdth" 100;
+        }
+
+        .header-text {
+            position: absolute;
+            left: 150px;
+            top: 90px;
+            color: white;
+            text-align: center;
+            margin-bottom: 1000px;
+            margin: 10px 500px 30px 40px;
+        }
+        .header-text h1 {
+            font-size: 60px;
+            margin-bottom: 300;
+        }
+        .header-text h2 {
+            font-size: 34px;
+        }
+        .welcome-text {
+            position: absolute;
+            left:150px;
+            top: 180px;
+            color: white;
+            font-size: 20px;
+            text-align: left;
+            width: 400px;
+            margin-top: 100px;
+            font-weight: bold;
+        }
+
+        .master {
+            color: #ffffff; /*  cor para "master" */
+        }
+
+        .up {
+            color: #007BFF; /* cor destacada só no "Up" */
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #0032bb;
+        }
+
+        .entrar-sem-cadastro {
+            font-size: 13px;
+        }
+        .input-group [data-tipo="topo-cadastro"] {
+            font-size: 18px;
+        }
+ 
+        .input-group[data-tipo="educador"], [data-tipo="aluno"] { /*não pude mudar diretamente algumas tags no html, utilizei o datatipo no css*/
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 12px;
+        }
+        .input-group[data-tipo="educador"]:hover, [data-tipo="aluno"]:hover {
+            background: #0056b3;
+            transform: scale(0.99); /* para afundar quando clicar */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .checkbox-termos { /*caixa de seleção para termos de uso*/
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-top: 20px;
+            margin: 20px 50px 20px 40px;  /* Espaçamento externo: 10px topo, 200px direita, 30px baixo, 40px esquerda */
+        }
+
+        .checkbox-termos input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #0056b3; /* cor verde para o check */
+        }
+
+        .entrar-sem-cadastro, .register-link {
+            margin: 13px 20px 10px 20px;  /* Espaçamento externo: 10px topo, 200px direita, 30px baixo, 40px esquerda */
+        }
+
+        .infos {
+            display: flex;
+            gap: 1cm; /* espaçamento EXATO entre os botões */
+            width: 100%;
+            justify-content: center; /* centraliza os botões na tela */
+        }
+      
+        .infos button {
+            background: #0032bb;
+            color: rgb(245, 242, 242);
+            border: none;
+            padding: 12px 35px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            font-size: 14px;
+            margin-left: 10px;
+            gap: 700px; /*ESPAÇO ENTRE BOTÕES*/
+            margin-top: 290px;  /*  margem do topo aqui */
+        }
+
+        .infos button[data-tipo="saiba-mais"] {
+            border: 1px solid rgb(129, 129, 129);
+        }
+
+        .infos button:hover[data-tipo="saiba-mais"], [data-tipo="fzrlogin"]:hover {
+            transform: translateY(-7px);
+            background: linear-gradient(45deg, #0032bb, #013054)  
+        }
+
+        /* TERMOS DE USO - MODAL */
+        .terms-floating-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .terms-card {
+            background: #141414;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid #2d2d3a;
+            color: #aaa8a8;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .terms-floating-container.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .terms-floating-container.show .terms-card {
+            transform: translateY(0);
+        }
+
+        .terms-header {
+            padding: 18px 20px;
+            background: #002cee;
+            border-bottom: 1px solid #202020;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+        }
+
+        .terms-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .terms-icon {
+            width: 24px;
+            height: 24px;
+            stroke: #0015d4;
+            flex-shrink: 0;
+        }
+
+        .terms-content {
+            padding: 20px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .terms-section {
+            margin-bottom: 16px;
+        }
+
+        .terms-section h4 {
+            margin: 0 0 8px 0;
+            font-size: 0.95rem;
+            color: #b8b8d2;
+        }
+
+        .terms-section p {
+            margin: 0;
+            color: #c9c9d9;
+        }
+
+        .terms-footer {
+            padding: 15px 20px;
+            background: #0e0d0d;
+            border-top: 1px solid #161616;
+            text-align: center;
+            position: sticky;
+            bottom: 0;
+        }
+
+        .terms-button {
+            background: #0424da;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .terms-button:hover {
+            background: #000f92;
+        }
+
+        .terms-small {
+            font-size: 0.75rem;
+            color: #a1a1b5;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .terms-link {
+            color: #001ec7;
+            text-decoration: none;
+        }
+
+        .terms-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .terms-card {
+                width: 95%;
+            }
+        }
+
+        /* Estilo para o checkbox de termos */
+        #termos-container {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        #termos-container label {
+            margin-left: 8px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        #termos-container a {
+            color: #0051ff;
+            text-decoration: none;
+        }
+
+        #termos-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos para as mensagens de validação */
+        .validation-message {
+            color: #ff4444;
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: left;
+            display: none;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .valid {
+            border-color: #00C851 !important;
+        }
+
+        .invalid {
+            border-color: #ff4444 !important;
+        }
+
+        /* Ícone de validação */
+        .validation-icon {
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            display: none;
+        }
+
+        .valid-icon {
+            color: #00C851;
+        }
+
+        .invalid-icon {
+            color: #ff4444;
+        }
+
+
+        /*rolagem para o saiba MAIS*/
+    </style>
+</head>
+<body>
+
+    <video class="video-fundo" autoplay muted loop>
+        <source src="C:\Users\psouz\OneDrive\Imagens\Screenshots\backend\Nova pasta\MasterUp (5).mp4" type="video/mp4">
+    </video>
+
+    <div class="infos">
+        <a href="OALTOOONOSITE.html">
+        <button data-tipo="saiba-mais" onclick="moveElement(this)">Saiba mais</button>
+         </a>
+
+         <a href="\login\loginnovoecorretoCERTOOOOOO.html">
+        <button data-tipo="fzrlogin" onclick="moveElement(this)">Já possuo cadastro</button>
+        </a>
+    </div>
+
+    <div class="cadastro-container">
+        <div class="input-group" data-tipo="topo-cadastro"> 
+            <p style="font-size: 20px; color: #0135df;">Cadastrar<p>
+            <p style="font-size: 20px; color: #0135df;"> nova conta</p>
+        </div>
+
+        <form action="salvar_usuario.php" method="POST" onsubmit="return validarFormulario()">
+            <div class="input-wrapper">
+                <div class="input-group" onclick="moveElement(this)">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="nome_usuario" id="nome_usuario" placeholder="Nome de usuário" required 
+                           onblur="validarNomeUsuario()">
+                    <span class="validation-icon" id="nome_usuario_icon"></span>
+                </div>
+                <div class="validation-message" id="nome_usuario_message"></div>
+            </div>
+
+            <div class="lado-a-lado">
+                <div class="input-group" data-tipo="educador" onclick="moveElement(this); selecionarTipo(this);">
+                    <span>Sou educador</span>
+                </div>
+                <div class="input-group" data-tipo="aluno" onclick="moveElement(this); selecionarTipo(this);">
+                    <span>Sou aluno</span>
+                </div>
+            </div>
+            <input type="hidden" name="tipo" id="tipoInput" required>
+            <div class="validation-message" id="tipo_message"></div>
+
+            <!-- CAMPOS LADO A LADO -->
+            <div class="lado-a-lado">
+                <div class="input-wrapper">
+                    <div class="input-group" onclick="moveElement(this)">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" name="email" id="email" placeholder="E-mail" required 
+                               onblur="validarEmail()">
+                        <span class="validation-icon" id="email_icon"></span>
+                    </div>
+                    <div class="validation-message" id="email_message"></div>
+                </div>
+                <div class="input-wrapper">
+                    <div class="input-group" onclick="moveElement(this)">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" name="contato" id="contato" placeholder="Contato" required 
+                               onblur="validarTelefone()">
+                        <span class="validation-icon" id="contato_icon"></span>
+                    </div>
+                    <div class="validation-message" id="contato_message"></div>
+                </div>
+            </div>
+
+            <div class="input-wrapper">
+                <div class="input-group" onclick="moveElement(this)">
+                    <i class="fas fa-id-card"></i>
+                    <input type="text" name="cpf" id="cpf" placeholder="CPF" required 
+                           onblur="validarCPF()">
+                    <span class="validation-icon" id="cpf_icon"></span>
+                </div>
+                <div class="validation-message" id="cpf_message"></div>
+            </div>
+
+            <div class="input-wrapper">
+                <div class="input-group" onclick="moveElement(this)">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="senha" placeholder="Inserir senha" required
+                           onblur="validarSenha()">
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+                    <span class="validation-icon" id="senha_icon"></span>
+                </div>
+                <div class="validation-message" id="senha_message"></div>
+            </div>
+
+            <div id="termos-container">
+                <input type="checkbox" id="aceito-termos" name="aceito-termos" required>
+                <label for="aceito-termos">Eu li e aceito os <a href="#" onclick="mostrarTermos(); return false;">Termos de Uso</a>.</label>
+            </div>
+            <div class="validation-message" id="termos_message"></div>
+
+            <div'>
+            <a href="\login\loginnovoecorretoCERTOOOOOO.html">
+                <button class="btn-login" type="submit">Criar conta</button>
+            </a>
+            </div>
+        </form>
+
+        <a href="#" class="register-link" onclick="showNoLoginOptions()"></a>
+    </div>
+
+    <!-- Modal de Termos de Uso -->
+    <div class="terms-floating-container" id="termsModal">
+        <div class="terms-card">
+            <div class="terms-header">
+                <svg class="terms-icon" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <h3>Termos de Uso</h3>
+            </div>
+            <div class="terms-content">
+                <div class="terms-section">
+                    <h4>1. Aceitação dos Termos</h4>
+                    <p>Ao acessar e usar este serviço, você concorda em cumprir estes termos de uso e nossa política de privacidade.</p>
+                </div>
+                <div class="terms-section">
+                    <h4>2. Uso do Serviço</h4>
+                    <p>Você concorda em usar o serviço apenas para fins legais e de acordo com estes termos. É proibido qualquer uso que viole leis locais, nacionais ou internacionais.</p>
+                </div>
+                <div class="terms-section">
+                    <h4>3. Conta do Usuário</h4>
+                    <p>Você é responsável por manter a confidencialidade de suas credenciais de login e por todas as atividades que ocorram em sua conta.</p>
+                </div>
+                <div class="terms-section">
+                    <h4>4. Propriedade Intelectual</h4>
+                    <p>Todo o conteúdo do serviço, incluindo textos, gráficos, logotipos e software, é propriedade da empresa ou de seus licenciadores e está protegido por leis de direitos autorais.</p>
+                </div>
+                <div class="terms-section">
+                    <h4>5. Limitação de Responsabilidade</h4>
+                    <p>O serviço é fornecido "no estado em que se encontra". Não garantimos que o serviço será ininterrupto, seguro ou livre de erros.</p>
+                </div>
+            </div>
+            <div class="terms-footer">
+                <button class="terms-button" onclick="acceptTerms()">Aceitar Termos</button>
+                <button class="terms-button" style="background: #6c757d;" onclick="fecharModal()">Recusar</button>
+                <p class="terms-small">Ao clicar em "Aceitar Termos", você concorda com nossos <br>
+                     <a href="#" class="terms-link">Termos de Serviço</a> e <a href="#" class="terms-link">Política de Privacidade</a>.</p>
+            </div>
+        </div>
+
+
+
+</div>
+    </div>
+
+    <script>
+        // Mostra o modal de termos com animação
+        function mostrarTermos() {
+            const modal = document.getElementById('termsModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Impede rolagem da página
+        }
+
+        // Fecha o modal de termos
+        function fecharModal() {
+            const modal = document.getElementById('termsModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restaura rolagem da página
+        }
+
+        // Aceita os termos e fecha o modal
+        function acceptTerms() {
+            document.getElementById('aceito-termos').checked = true;
+            fecharModal();
+            document.getElementById('termos_message').style.display = 'none';
+        }
+
+        // Validação do checkbox de termos
+        function validarCheckbox() {
+            const termosCheckbox = document.getElementById('aceito-termos');
+            const termosMessage = document.getElementById('termos_message');
+            
+            if (!termosCheckbox.checked) {
+                termosMessage.textContent = "Você precisa aceitar os termos para continuar.";
+                termosMessage.style.display = 'block';
+                mostrarTermos();
+                return false;
+            } else {
+                termosMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        // Fecha o modal ao clicar fora
+        document.getElementById('termsModal').addEventListener('click', function(e) {
+            if (e.target === this) fecharModal();
+        });
+
+        function selecionarTipo(element) {
+            const tipo = element.getAttribute('data-tipo');
+            document.getElementById('tipoInput').value = tipo;
+            document.getElementById('tipo_message').style.display = 'none';
+        }
+
+        function togglePassword() {
+            const passwordInput = document.getElementById("password");
+            const icon = document.querySelector(".toggle-password");
+            
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        function moveElement(el) {
+            // Placeholder para função de animação, se necessário
+        }
+
+        function handleForgotPassword() {
+            alert("Redefinição de senha em breve.");
+        }
+
+        function showNoLoginOptions() {
+            document.getElementById("noLoginOptions").style.display = "block";
+        }
+
+        function handleRegister() {
+            alert("Função de cadastro externo ainda não implementada.");
+        }
+
+        // Funções de validação
+        function validarNomeUsuario() {
+            const nomeUsuario = document.getElementById('nome_usuario');
+            const message = document.getElementById('nome_usuario_message');
+            const icon = document.getElementById('nome_usuario_icon');
+            
+            if (nomeUsuario.value.length < 3) {
+                nomeUsuario.classList.add('invalid');
+                nomeUsuario.classList.remove('valid');
+                message.textContent = "O nome de usuário deve ter pelo menos 3 caracteres.";
+                message.style.display = 'block';
+                icon.className = 'validation-icon invalid-icon fas fa-times';
+                icon.style.display = 'block';
+                return false;
+            } else if (nomeUsuario.value.length > 20) {
+                nomeUsuario.classList.add('invalid');
+                nomeUsuario.classList.remove('valid');
+                message.textContent = "O nome de usuário não pode ter mais de 20 caracteres.";
+                message.style.display = 'block';
+                icon.className = 'validation-icon invalid-icon fas fa-times';
+                icon.style.display = 'block';
+                return false;
+            } else {
+                nomeUsuario.classList.add('valid');
+                nomeUsuario.classList.remove('invalid');
+                message.style.display = 'none';
+                icon.className = 'validation-icon valid-icon fas fa-check';
+                icon.style.display = 'block';
+                return true;
+            }
+        }
+
+        function validarEmail() {
+            const email = document.getElementById('email');
+            const message = document.getElementById('email_message');
+            const icon = document.getElementById('email_icon');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(email.value)) {
+                email.classList.add('invalid');
+                email.classList.remove('valid');
+                message.textContent = "Por favor, insira um endereço de e-mail válido.";
+                message.style.display = 'block';
+                icon.className = 'validation-icon invalid-icon fas fa-times';
+                icon.style.display = 'block';
+                return false;
+            } else {
+                email.classList.add('valid');
+                email.classList.remove('invalid');
+                message.style.display = 'none';
+                icon.className = 'validation-icon valid-icon fas fa-check';
+                icon.style.display = 'block';
+                return true;
+            }
+        }
+
+        function validarTelefone() {
+            const telefone = document.getElementById('contato');
+            const message = document.getElementById('contato_message');
+            const icon = document.getElementById('contato_icon');
+            // Remove todos os caracteres não numéricos
+            const telefoneNumerico = telefone.value.replace(/\D/g, '');
+            
+            if (telefoneNumerico.length < 10 || telefoneNumerico.length > 11) {
+                telefone.classList.add('invalid');
+                telefone.classList.remove('valid');
+                message.textContent = "O telefone deve ter entre 10 e 11 dígitos (incluindo DDD).";
+                message.style.display = 'block';
+                icon.className = 'validation-icon invalid-icon fas fa-times';
+                icon.style.display = 'block';
+                return false;
+            } else {
+                telefone.classList.add('valid');
+                telefone.classList.remove('invalid');
+                message.style.display = 'none';
+                icon.className = 'validation-icon valid-icon fas fa-check';
+                icon.style.display = 'block';
+                return true;
+            }
+        }
+
+        function validarCPF() {
+            const cpfInput = document.getElementById('cpf');
+            const message = document.getElementById('cpf_message');
+            const icon = document.getElementById('cpf_icon');
+            // Remove todos os caracteres não numéricos
+            const cpf = cpfInput.value.replace(/\D/g, '');
+            
+            if (cpf.length !== 11 || !validarCPFNumerico(cpf)) {
+                cpfInput.classList.add('invalid');
+                cpfInput.classList.remove('valid');
+                message.textContent = "Por favor, insira um CPF válido.";
+                message.style.display = 'block';
+                icon.className = 'validation-icon invalid-icon fas fa-times';
+                icon.style.display = 'block';
+                return false;
+            } else {
+                cpfInput.classList.add('valid');
+                cpfInput.classList.remove('invalid');
+                message.style.display = 'none';
+                icon.className = 'validation-icon valid-icon fas fa-check';
+                icon.style.display = 'block';
+                return true;
+            }
+        }
+
+        function validarCPFNumerico(cpf) {
+            // Validação de CPF baseada em cálculo de dígitos verificadores
+            if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+            
+            let soma = 0;
+            let resto;
+            
+            for (let i = 1; i <= 9; i++) {
+                soma += parseInt(cpf.substring(i-1, i)) * (11 - i);
+            }
+            resto = (soma * 10) % 11;
+            
+            if ((resto === 10) || (resto === 11)) resto = 0;
+            if (resto !== parseInt(cpf.substring(9, 10))) return false;
+            
+            soma = 0;
+            for (let i = 1; i <= 10; i++) {
+                soma += parseInt(cpf.substring(i-1, i)) * (12 - i);
+            }
+            resto = (soma * 10) % 11;
+            
+            if ((resto === 10) || (resto === 11)) resto = 0;
+            if (resto !== parseInt(cpf.substring(10, 11))) return false;
+            
+            return true;
+        }
+
+        function validarSenha() {
+            const senha = document.getElementById('password');
+            const message = document.getElementById('senha_message');
+            const icon = document.getElementById('senha_icon');
+            
+            if (senha.value.length < 8) {
+                senha.classList.add('invalid');
+                senha.classList.remove('valid');
+                message.textContent = "A senha deve ter pelo menos 8 caracteres.";
+                message.style.display = 'block';
+                icon.className = 'validation-icon invalid-icon fas fa-times';
+                icon.style.display = 'block';
+                return false;
+            } else {
+                senha.classList.add('valid');
+                senha.classList.remove('invalid');
+                message.style.display = 'none';
+                icon.className = 'validation-icon valid-icon fas fa-check';
+                icon.style.display = 'block';
+                return true;
+            }
+        }
+
+        function validarTipoUsuario() {
+            const tipoInput = document.getElementById('tipoInput');
+            const message = document.getElementById('tipo_message');
+            
+            if (!tipoInput.value) {
+                message.textContent = "Por favor, selecione se você é educador ou aluno.";
+                message.style.display = 'block';
+                return false;
+            } else {
+                message.style.display = 'none';
+                return true;
+            }
+        }
+
+        // Validação geral do formulário
+        function validarFormulario() {
+            const validoNome = validarNomeUsuario();
+            const validoEmail = validarEmail();
+            const validoTelefone = validarTelefone();
+            const validoCPF = validarCPF();
+            const validaSenha = validarSenha();
+            const validoTipo = validarTipoUsuario();
+            const validoTermos = validarCheckbox();
+            
+            return validoNome && validoEmail && validoTelefone && validoCPF && 
+                   validaSenha && validoTipo && validoTermos;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Descubra seu Curso</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      margin-top: 300px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 300px;
+      box-shadow: 0 0 20px #0021b3;
+      text-align: center;
+    }
+
+    .progress-bar {
+      height: 8px;
+      width: 100%;
+      background: #333;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: #1031c5;
+      transition: width 0.4s ease;
+    }
+
+    .question {
+      display: none;
+    }
+
+    .question.active {
+      display: block;
+    }
+
+    .question p {
+      color: #ffffff;
+      font-weight: bold;
+      min-height: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .option-container {
+      background-color: #ffffff;
+      color: #333;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+      position: relative;
+      padding-left: 40px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .option-container:hover {
+      background-color: #f0f0f0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .option-container:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .option-container.selected {
+      background-color: #d4e6ff;
+      border-left: 4px solid #00449c;
+    }
+
+    .option-container input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .custom-radio {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      border: 2px solid #00449c;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .option-container.selected .custom-radio {
+      background-color: #00449c;
+      box-shadow: inset 0 0 0 3px white;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #00449c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      color: rgb(245, 242, 242);
+      padding: 12px 35px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s, transform 0.1s;
+      gap: 700px;
+    }
+
+    button:hover {
+      transform: translateY(-7px);
+      background: linear-gradient(45deg, #0032bb, #013054)  
+    }
+
+    #result {
+      margin-top: 2rem;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .video-fundo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .botãoentrar {
+      position: fixed;
+      bottom: 60px;
+      left: 60px;
+      margin-top: 800px;
+      margin-left: 400%;
+      padding: 12px 35px;
+      background: #00449c;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      color: rgb(245, 242, 242);
+      transition: 0.3s, transform 0.1s;
+      z-index: 100;
+      transform: translateX(-50%);
+    }
+
+    /* Estilo para o redirecionamento */
+    #redirecionamento-container {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      color: white;
+      animation: fadeIn 1s ease-in;
+    }
+
+    #redirecionamento-container h3 {
+      color: #0026ff;
+      margin-bottom: 10px;
+    }
+
+    #contador {
+      font-weight: bold;
+      color: rgb(10, 47, 255);
+      font-size: 1.2em;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <video autoplay muted loop playsinline class="video-fundo">
+    <source src="D:\Pictures\Screenshots\backend\Nova pasta\paracompatcarcurso\denovooooo.mp4" type="video/mp4" />
+    Seu navegador não suporta vídeos em HTML5.
+  </video>
+
+  <div class="container">
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <form id="courseForm">
+      <div class="question active" data-step="1" data-text="1. Você já tem alguma experiência com programação ou está começando agora?">
+        <p></p>
+        <label class="option-container">
+          <input type="radio" name="exp" value="sim">
+          <span class="custom-radio"></span>
+          Sim, já tenho alguma noção.
+        </label>
+        <label class="option-container">
+          <input type="radio" name="exp" value="nao">
+          <span class="custom-radio"></span>
+          Não, estou começando do zero.
+        </label>
+      </div>
+
+      <div class="question" data-step="2" data-text="2. Você quer aprender a criar a estrutura visual de sites e páginas?">
+        <p></p>
+        <label class="option-container">
+          <input type="radio" name="html" value="sim">
+          <span class="custom-radio"></span>
+          Sim, quero aprender como montar a aparência dos sites!
+        </label>
+        <label class="option-container">
+          <input type="radio" name="html" value="nao">
+          <span class="custom-radio"></span>
+          Não, quero algo mais focado em lógica e funcionalidades.
+        </label>
+      </div>
+
+      <div class="question" data-step="3" data-text="3. Você tem interesse em aprender como os sites se comportam quando o usuário clica em botões ou envia formulários?">
+        <p></p>
+        <label class="option-container">
+          <input type="radio" name="js" value="sim">
+          <span class="custom-radio"></span>
+          Sim, quero aprender como criar essas interações!
+        </label>
+        <label class="option-container">
+          <input type="radio" name="js" value="nao">
+          <span class="custom-radio"></span>
+          Não, por enquanto prefiro só aprender a montar o visual.
+        </label>
+      </div>
+
+      <div class="question" data-step="4" data-text="4. Você quer aprender como armazenar e consultar informações, como cadastros ou produtos?">
+        <p></p>
+        <label class="option-container">
+          <input type="radio" name="sql" value="sim">
+          <span class="custom-radio"></span>
+          Sim, quero aprender isso!
+        </label>
+        <label class="option-container">
+          <input type="radio" name="sql" value="nao">
+          <span class="custom-radio"></span>
+          Não, talvez mais pra frente.
+        </label>
+      </div>
+
+      <div class="question" data-step="5" data-text="5. Você quer aprender como atualizar partes do site sem recarregar a página inteira?">
+        <p></p>
+        <label class="option-container">
+          <input type="radio" name="ajax" value="sim">
+          <span class="custom-radio"></span>
+          Sim, isso parece útil!
+        </label>
+        <label class="option-container">
+          <input type="radio" name="ajax" value="nao">
+          <span class="custom-radio"></span>
+          Não, ainda não penso nisso.
+        </label>
+      </div>
+
+      <button type="button" id="nextBtn">Próxima</button>
+    
+      <a href="CENTRO2SIM.html">
+       <button type="button" id="nextBtn">Pular todas</button>
+      </a>
+    </form>
+
+    <div id="result"></div>
+    
+    <!-- Container de redirecionamento -->
+    <div id="redirecionamento-container">
+      <h3>Questionário concluído com sucesso!</h3>
+      <p>Você irá para o curso em <span id="contador"> 5</span> segundos...</p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('courseForm');
+    const questions = document.querySelectorAll('.question');
+    const nextBtn = document.getElementById('nextBtn');
+    const result = document.getElementById('result');
+    const progress = document.getElementById('progress');
+    const redirecionamentoContainer = document.getElementById('redirecionamento-container');
+    let currentStep = 0;
+
+    // Atualiza a barra de progresso
+    function updateProgress(step) {
+      const percentage = ((step + 1) / questions.length) * 100;
+      progress.style.width = percentage + '%';
+    }
+
+    // Função para escrever texto letra a letra
+    function typeWriter(element, text, i = 0, callback) {
+      if (i === 0) element.innerHTML = '';
+
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        setTimeout(() => typeWriter(element, text, i + 1, callback), 25);
+      } else if (callback) {
+        callback();
+      }
+    }
+
+    // Função para mostrar respostas
+    function showOptions(containers, index = 0) {
+      if (index >= containers.length) return;
+      
+      containers[index].style.opacity = '0';
+      containers[index].style.display = 'block';
+      
+      let opacity = 0;
+      const fadeIn = setInterval(() => {
+        opacity += 0.1;
+        containers[index].style.opacity = opacity;
+        if (opacity >= 1) {
+          clearInterval(fadeIn);
+          showOptions(containers, index + 1);
+        }
+      }, 50);
+    }
+
+    // Mostra o passo atual: pergunta + respostas com efeito
+    function showStep(index) {
+      questions.forEach((q, i) => q.classList.toggle('active', i === index));
+      updateProgress(index);
+
+      const currentQuestion = questions[index];
+      const text = currentQuestion.getAttribute('data-text');
+      const p = currentQuestion.querySelector('p');
+      const options = currentQuestion.querySelectorAll('.option-container');
+
+      // Esconde todas as respostas antes de mostrar
+      options.forEach(option => {
+        option.style.display = 'none';
+        option.style.opacity = '0';
+      });
+
+      // Digita a pergunta, depois mostra as respostas
+      typeWriter(p, text, 0, () => {
+        showOptions(options);
+      });
+    }
+
+    // Adiciona evento de clique nas opções
+    document.querySelectorAll('.option-container').forEach(container => {
+      container.addEventListener('click', function() {
+        const radio = this.querySelector('input[type="radio"]');
+        radio.checked = true;
+        
+        // Remove seleção de todas as opções desta pergunta
+        const allOptions = this.parentNode.querySelectorAll('.option-container');
+        allOptions.forEach(opt => opt.classList.remove('selected'));
+        
+        // Adiciona seleção na opção clicada
+        this.classList.add('selected');
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const currentQuestion = questions[currentStep];
+      const selected = currentQuestion.querySelector('input[type="radio"]:checked');
+
+      if (!selected) {
+        alert('Por favor, selecione uma resposta antes de continuar.');
+        return;
+      }
+
+      currentStep++;
+
+      if (currentStep < questions.length) {
+        showStep(currentStep);
+      } else {
+        form.style.display = 'none';
+        showResult();
+      }
+    });
+
+    function showResult() {
+      const data = new FormData(form);
+      let cursos = [];
+
+      if (data.get('exp') === 'nao' && data.get('html') === 'sim') cursos.push('HTML');
+      if (data.get('html') === 'sim') cursos.push('CSS');
+      if (data.get('js') === 'sim') cursos.push('JavaScript');
+      if (data.get('sql') === 'sim') cursos.push('SQL');
+      if (data.get('ajax') === 'sim') cursos.push('AJAX e JSON');
+      if (data.get('sql') === 'sim' && data.get('js') === 'sim') cursos.push('PHP');
+
+      if (cursos.length > 0) {
+        result.textContent = 'Cursos indicados para você: ' + cursos.join(', ');
+      } else {
+        result.textContent = 'Nenhum curso recomendado com base nas suas respostas.';
+      }
+      
+      // Mostra o container de redirecionamento
+      redirecionamentoContainer.style.display = 'block';
+      
+      // Inicia o contador regressivo
+      iniciarContador();
+    }
+
+    // Função para iniciar o contador regressivo
+    function iniciarContador() {
+      let segundos = 5;
+      const contadorElement = document.getElementById('contador');
+      
+      const intervalo = setInterval(() => {
+        segundos--;
+        contadorElement.textContent = segundos;
+        
+        if (segundos <= 0) {
+          clearInterval(intervalo);
+          redirecionarParaPagina();
+        }
+      }, 1000);
+    }
+
+    // Função para redirecionar para a página desejada - VERSÃO CORRIGIDA
+    function redirecionarParaPagina() {
+      // 1. Verifique se o arquivo está em um servidor web
+      // 2. Use um caminho relativo ou URL absoluta válida
+      const urlDestino = "CENTRO2SIM.html"; // Arquivo na mesma pasta
+      // OU
+      // const urlDestino = "/caminho/relativo/CENTRO2SIM.html"; // Caminho relativo
+      // OU
+      // const urlDestino = "https://seusite.com/CENTRO2SIM.html"; // URL completa
+      
+      // Método robusto de redirecionamento
+      try {
+        if (!urlDestino) throw new Error("URL de destino não definida");
+        
+        // Tenta primeiro o método mais seguro
+        window.location.assign(urlDestino);
+        
+        // Fallback após 100ms se necessário
+        setTimeout(() => {
+          window.location.href = urlDestino;
+        }, 100);
+        
+        // Segundo fallback após 200ms
+        setTimeout(() => {
+          window.location.replace(urlDestino);
+        }, 200);
+        
+      } catch (e) {
+        console.error("Erro no redirecionamento:", e);
+        // Fallback final - mostra link clicável
+        result.innerHTML += `
+          <p style="color:white;margin-top:20px;">
+            Redirecionamento automático falhou. 
+            <a href="${urlDestino}" style="color:#4CAF50;text-decoration:underline;">
+              Clique aqui para acessar manualmente
+            </a>
+          </p>`;
+      }
+    }
+
+    // Inicializa a primeira pergunta e respostas
+    showStep(currentStep);
+</script>
+</body>
+</html>

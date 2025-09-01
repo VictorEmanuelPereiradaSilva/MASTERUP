@@ -1,0 +1,88 @@
+<!DOCTYPE html> <!-- Define o tipo de documento como HTML5 -->
+<html lang="pt-BR"> <!-- Início do documento HTML com idioma português do Brasil -->
+<head>
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+  <title>Cadastro com Saiba Mais</title> <!-- Título da página que aparece na aba do navegador -->
+  <style>
+    html {
+      scroll-behavior: smooth; /* Faz a rolagem da página ser suave ao clicar em âncoras */
+    }
+
+
+    header {
+      background: #007BFF; /* Cor de fundo azul */
+      color: white; /* Cor do texto branca */
+      text-align: center; /* Centraliza o texto */
+      padding: 30px; /* Espaçamento interno */
+    }
+
+    .form-container {
+      max-width: 500px; /* Largura máxima de 500px */
+      margin: 40px auto; /* Centraliza horizontalmente com margem vertical */
+      padding: 20px; /* Espaço interno */
+      background: #f5f5f5; /* Cor de fundo cinza clara */
+      border-radius: 10px; /* Cantos arredondados */
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave ao redor */
+    }
+
+    form {
+      display: flex; /* Usa flexbox para layout */
+      flex-direction: column; /* Elementos em coluna */
+      gap: 15px; /* Espaço entre os elementos */
+    }
+
+    input, button {
+      padding: 12px; /* Espaçamento interno */
+      font-size: 16px; /* Tamanho da fonte */
+      border-radius: 5px; /* Bordas arredondadas */
+      border: 1px solid #ccc; /* Borda cinza clara */
+    }
+
+    button {
+      background-color: #007BFF; /* Fundo azul */
+      color: white; /* Cor do texto branco */
+      cursor: pointer; /* Mostra a "mão" ao passar o mouse */
+    }
+
+    button:hover {
+      background-color: #0056b3; /* Muda o fundo para azul mais escuro ao passar o mouse */
+    }
+
+    #saiba-mais {
+      text-align: center; /* Centraliza o botão */
+      margin-top: 30px; /* Espaço superior */
+    }
+
+    .espaco {
+      height: 100vh; /* Altura igual à altura total da tela (viewport) para criar um espaço antes da imagem */
+    }
+
+    #imagem-saiba-mais {
+      text-align: center; /* Centraliza o conteúdo */
+      padding: 40px; /* Espaço interno */
+      background-color: #f0f0f0; /* Cor de fundo cinza claro */
+    }
+
+    #imagem-saiba-mais img {
+      max-width: 100%; /* A imagem pode ocupar no máximo 90% da largura do container */
+      border-radius: 10px; /* Bordas arredondadas na imagem */
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2); /* Sombra para dar profundidade à imagem */
+    }
+  </style>
+</head>
+<body>
+
+    <!-- Botão "Saiba Mais" que rola suavemente até a imagem -->
+    <div class="saiba-mais">
+      <a href="#imagem-saiba-mais"><button type="button">Saiba Mais</button></a>
+    </div>
+
+
+  <div class="espaco"></div> <!-- Espaço entre o botão e a imagem para forçar rolagem -->
+
+  <div id="imagem-saiba-mais">
+    <img src="OALTOOO.png" alt="Imagem Saiba Mais"> <!-- Imagem exibida quando se clica em "Saiba Mais" -->
+  </div>
+
+</body>
+</html>

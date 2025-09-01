@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConectaEduca - Plataforma de Cursos Colaborativos</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+  <link rel="stylesheet" href="D:\Pictures\Screenshots\backend\Nova pasta\paracompatcarcurso\estilopagusuariosEpagvideo.css">   <!-- link do estilo da página videos no curso -->
+    <link rel="stylesheet" href="D:\Pictures\Screenshots\backend\Nova pasta\paracompatcarcurso\estilopagusuariosEpagvideo.css">
+
+    <!-- link do estilo da página de usuario no curso -->
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+        <div class="container cabecalho-container">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40" alt="Logo ConectaEduca">
+                <span class="logo-texto">ConectaEduca</span>
+            </div>
+            
+            <div class="barra-pesquisa">
+                <input type="text" placeholder="Buscar cursos, criadores, temas...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="botoes-acesso">
+                <button class="btn btn-outline">Entrar</button>
+                <button class="btn btn-primario">Cadastrar-se</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="conteudo-principal">
+        <div class="container">
+            <!-- Seção título e resumo -->
+            <section class="secao-titulo">
+                <h1 class="titulo-curso">Introdução à Astronomia</h1>
+                <p class="subtitulo-curso">Para curiosos e iniciantes</p>
+                
+                <div class="info-criador">
+                    <img src="https://via.placeholder.com/50" alt="Foto do criador" class="foto-criador">
+                    <div>
+                        <a href="#" class="nome-criador">Prof. Carlos Silva</a>
+                        <div class="info-adicionais">
+                            <span><i class="far fa-calendar-alt"></i> Publicado em: 15/05/2023</span>
+                            <span><i class="far fa-eye"></i> 1.245 visualizações</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="acoes-curso">
+                    <button class="btn-acao"><i class="far fa-bookmark"></i> Favoritar</button>
+                    <button class="btn-acao"><i class="fas fa-share-alt"></i> Compartilhar</button>
+                    <button class="btn-acao"><i class="far fa-bell"></i> Receber notificações</button>
+                </div>
+            </section>
+            
+            <!-- Banner do curso -->
+            <img src="https://via.placeholder.com/1200x400" alt="Banner do curso de astronomia" class="banner-curso">
+            
+            <!-- Seção descrição -->
+            <section class="secao-descricao">
+                <h2 class="secao-titulo">Sobre o Curso</h2>
+                <p>Este curso é uma introdução fascinante ao universo da astronomia, projetado para quem deseja compreender os fundamentos do cosmos. Não é necessário conhecimento prévio - apenas curiosidade e vontade de aprender!</p>
+                
+                <div class="detalhes-curso">
+                    <div class="detalhe-item">
+                        <i class="fas fa-users detalhe-icone"></i>
+                        <div>
+                            <h4>Público-alvo</h4>
+                            <p>Iniciantes, estudantes, curiosos</p>
+                        </div>
+                    </div>
+                    <div class="detalhe-item">
+                        <i class="fas fa-graduation-cap detalhe-icone"></i>
+                        <div>
+                            <h4>Nível</h4>
+                            <p>Básico</p>
+                        </div>
+                    </div>
+                    <div class="detalhe-item">
+                        <i class="fas fa-clock detalhe-icone"></i>
+                        <div>
+                            <h4>Duração</h4>
+                            <p>4 semanas (8 horas no total)</p>
+                        </div>
+                    </div>
+                    <div class="detalhe-item">
+                        <i class="fas fa-video detalhe-icone"></i>
+                        <div>
+                            <h4>Formato</h4>
+                            <p>Híbrido (aulas gravadas e 2 encontros ao vivo)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>O que você vai aprender</h3>
+                <ul>
+                    <li>Os fundamentos da observação astronômica</li>
+                    <li>Como identificar constelações e planetas</li>
+                    <li>Os movimentos celestes e suas causas</li>
+                    <li>Noções sobre o Sistema Solar e além</li>
+                    <li>Como escolher e usar equipamentos básicos</li>
+                </ul>
+            </section>
+            
+            <!-- Grade horária -->
+            <section class="secao-grade">
+                <h2 class="secao-titulo">Grade Horária</h2>
+                
+                <div class="tabs">
+                    <div class="tab ativo" data-tab="modulo1">Módulo 1: Fundamentos</div>
+                    <div class="tab" data-tab="modulo2">Módulo 2: Sistema Solar</div>
+                    <div class="tab" data-tab="modulo3">Módulo 3: Além do Sistema Solar</div>
+                </div>
+                
+                <div class="conteudo-tab ativo" id="modulo1">
+                    <table class="tabela-grade">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Título</th>
+                                <th>Formato</th>
+                                <th>Status</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10/06/2023</td>
+                                <td>19:00 - 20:30</td>
+                                <td>Introdução à Astronomia (ao vivo)</td>
+                                <td><span class="badge badge-ao-vivo">Ao vivo</span></td>
+                                <td><i class="fas fa-lock-open"></i> Disponível</td>
+                                <td><a href="#" class="btn-acao"><i class="fas fa-play"></i> Assistir</a></td>
+                            </tr>
+                            <tr>
+                                <td>12/06/2023</td>
+                                <td>-</td>
+                                <td>Movimentos Celestes</td>
+                                <td><span class="badge badge-gravado">Gravado</span></td>
+                                <td><i class="fas fa-lock-open"></i> Disponível</td>
+                                <td><a href="#" class="btn-acao"><i class="fas fa-play"></i> Assistir</a></td>
+                            </tr>
+                            <tr>
+                                <td>15/06/2023</td>
+                                <td>-</td>
+                                <td>Leitura: História da Astronomia</td>
+                                <td><span class="badge badge-leitura">Leitura</span></td>
+                                <td><i class="fas fa-lock-open"></i> Disponível</td>
+                                <td><a href="#" class="btn-acao"><i class="fas fa-book-open"></i> Ler</a></td>
+                            </tr>
+                            <tr>
+                                <td>17/06/2023</td>
+                                <td>20:00 - 21:00</td>
+                                <td>Prática: Identificando Constelações</td>
+                                <td><span class="badge badge-ao-vivo">Ao vivo</span></td>
+                                <td><i class="fas fa-lock"></i> Em breve</td>
+                                <td><button class="btn-acao"><i class="far fa-calendar-plus"></i> Agendar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="conteudo-tab" id="modulo2">
+                    <p>Conteúdo do módulo 2 será disponibilizado em breve.</p>
+                </div>
+                
+                <div class="conteudo-tab" id="modulo3">
+                    <p>Conteúdo do módulo 3 será disponibilizado em breve.</p>
+                </div>
+            </section>
+            
+            <!-- Materiais complementares -->
+            <section class="secao-materiais">
+                <h2 class="secao-titulo">Materiais Complementares</h2>
+                
+                <div class="lista-materiais">
+                    <div class="material-item">
+                        <i class="fas fa-file-pdf material-icone"></i>
+                        <div class="material-info">
+                            <h4>Guia de Constelações</h4>
+                            <p class="material-tipo">PDF • 2.4 MB</p>
+                            <a href="#" class="btn-acao"><i class="fas fa-download"></i> Baixar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="material-item">
+                        <i class="fas fa-link material-icone"></i>
+                        <div class="material-info">
+                            <h4>Mapa Celeste Interativo</h4>
+                            <p class="material-tipo">Link externo</p>
+                            <a href="#" class="btn-acao"><i class="fas fa-external-link-alt"></i> Acessar</a>
+                        </div>
+                    </div>
+                    
+                    <div class="material-item">
+                        <i class="fas fa-file-powerpoint material-icone"></i>
+                        <div class="material-info">
+                            <h4>Slides das Aulas</h4>
+                            <p class="material-tipo">Apresentação • 5.1 MB</p>
+                            <a href="#" class="btn-acao"><i class="fas fa-download"></i> Baixar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Interações e comunidade -->
+            <section class="secao-comunidade">
+                <h2 class="secao-titulo">Comunidade</h2>
+                
+                <div class="avaliacao-geral">
+                    <div class="estrelas">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div>
+                        <strong>4.5</strong> (128 avaliações)
+                    </div>
+                </div>
+                
+                <div class="form-avaliacao">
+                    <h4>Deixe sua avaliação</h4>
+                    <div class="estrelas-avaliar">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <textarea placeholder="Compartilhe sua experiência com este curso..."></textarea>
+                    <button class="btn btn-primario">Enviar Avaliação</button>
+                </div>
+                
+                <div class="comentarios-lista">
+                    <h4>Comentários (24)</h4>
+                    
+                    <div class="comentario">
+                        <img src="https://via.placeholder.com/50" alt="Foto do usuário" class="comentario-avatar">
+                        <div class="comentario-conteudo">
+                            <div class="comentario-cabecalho">
+                                <span class="comentario-autor">Ana Oliveira</span>
+                                <span class="comentario-data">2 dias atrás</span>
+                            </div>
+                            <div class="comentario-texto">
+                                <p>Adorei a primeira aula! O professor explica de forma muito clara e acessível. Já consegui identificar algumas constelações aqui da minha varanda. Ansiosa pelas próximas aulas!</p>
+                            </div>
+                            <div class="comentario-acoes">
+                                <a href="#" class="comentario-acao"><i class="far fa-thumbs-up"></i> Útil (8)</a>
+                                <a href="#" class="comentario-acao"><i class="far fa-comment"></i> Responder</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comentario">
+                        <img src="https://via.placeholder.com/50" alt="Foto do usuário" class="comentario-avatar">
+                        <div class="comentario-conteudo">
+                            <div class="comentario-cabecalho">
+                                <span class="comentario-autor">Pedro Henrique</span>
+                                <span class="comentario-data">1 semana atrás</span>
+                            </div>
+                            <div class="comentario-texto">
+                                <p>O material complementar é excelente! Só senti falta de mais exemplos práticos durante a aula gravada. Mas no geral está sendo uma ótima experiência.</p>
+                            </div>
+                            <div class="comentario-acoes">
+                                <a href="#" class="comentario-acao"><i class="far fa-thumbs-up"></i> Útil (3)</a>
+                                <a href="#" class="comentario-acao"><i class="far fa-comment"></i> Responder</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-lista">
+                    <h4>Perguntas Frequentes</h4>
+                    
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <span>Preciso de telescópio para acompanhar o curso?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-resposta">
+                            <p>Não é necessário! O curso foi pensado para ser acessível a todos. Muitas observações podem ser feitas a olho nu. Caso queira investir em equipamentos, teremos uma aula específica sobre isso no módulo 3.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-pergunta">
+                            <span>As aulas ao vivo ficarão gravadas?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-resposta">
+                            <p>Sim, todas as aulas ao vivo ficarão disponíveis na plataforma por tempo indeterminado para que você possa assistir quando quiser.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Sobre o criador -->
+            <section class="secao-criador">
+                <h2 class="secao-titulo">Sobre o Criador</h2>
+                
+                <div class="criador-perfil">
+                    <img src="https://via.placeholder.com/100" alt="Foto do criador" class="criador-foto">
+                    <div class="criador-info">
+                        <h3>Prof. Carlos Silva</h3>
+                        <p class="criador-bio">Astrônomo amador há 15 anos, membro da Sociedade Astronômica Brasileira. Ministro palestras e cursos de introdução à astronomia desde 2015, com foco em tornar a ciência acessível a todos.</p>
+                        
+                        <div class="criador-redes">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fas fa-globe"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="criador-cursos">
+                    <h4>Outros Cursos deste Criador</h4>
+                    
+                    <div class="cursos-lista">
+                        <div class="curso-item">
+                            <img src="https://via.placeholder.com/250x120" alt="Curso 1" class="curso-imagem">
+                            <div class="curso-info">
+                                <h4>Astronomia para Crianças</h4>
+                                <p>Introdução lúdica ao universo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="curso-item">
+                            <img src="https://via.placeholder.com/250x120" alt="Curso 2" class="curso-imagem">
+                            <div class="curso-info">
+                                <h4>Fotografia Astronômica</h4>
+                                <p>Capturando o céu noturno</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Ações fixas -->
+    <div class="acoes-fixas">
+        <button class="btn-fixo btn-primario"><i class="fas fa-plus"></i> Criar Curso</button>
+        <button class="btn-fixo btn-primario"><i class="fas fa-book-open"></i> Meus Cursos</button>
+    </div>
+    
+    <!-- Rodapé -->
+    <footer class="rodape">
+        <div class="container">
+            <div class="rodape-container">
+                <div class="rodape-coluna">
+                    <h3>Sobre o ConectaEduca</h3>
+                    <ul class="rodape-links">
+                        <li><a href="#">Nossa Missão</a></li>
+                        <li><a href="#">Como Funciona</a></li>
+                        <li><a href="#">Equipe</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+                
+                <div class="rodape-coluna">
+                    <h3>Para Criadores</h3>
+                    <ul class="rodape-links">
+                        <li><a href="#">Publicar um Curso</a></li>
+                        <li><a href="#">Diretrizes da Comunidade</a></li>
+                        <li><a href="#">Dicas para Criadores</a></li>
+                        <li><a href="#">Programa de Parcerias</a></li>
+                    </ul>
+                </div>
+                
+                <div class="rodape-coluna">
+                    <h3>Recursos</h3>
+                    <ul class="rodape-links">
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Fórum da Comunidade</a></li>
+                        <li><a href="#">Calendário de Eventos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="rodape-coluna">
+                    <h3>Legal</h3>
+                    <ul class="rodape-links">
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Diretrizes de Conteúdo</a></li>
+                        <li><a href="#">Licenças de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="rodape-inferior">
+                <p>© 2023 ConectaEduca - Plataforma de Educação Colaborativa. Todos os direitos reservados.</p>
+                <p>Conteúdos disponibilizados sob licença Creative Commons CC BY-NC-SA.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+  <script src="D:\Pictures\Screenshots\backend\Nova pasta\paracompatcarcurso\js.pags_usuarioEvideo.js"></script>
+
+  
+</body>
+</html>

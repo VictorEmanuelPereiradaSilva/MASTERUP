@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Essencial | CodeHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --text-dark: #2b2d42;
+            --text-medium: #4a4e69;
+            --text-light: #8e9aaf;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --success: #48c937;
+            --radius-md: 8px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-medium);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Simplificado */
+        .header {
+            background-color: var(--bg-white);
+            padding: 15px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.25rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        /* Conteúdo Principal */
+        .course-hero {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .course-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .course-subtitle {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .instructor {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .instructor img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Seções do Curso */
+        .section {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        /* Módulos do Curso */
+        .module {
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .module-header {
+            padding: 12px 15px;
+            background-color: #f8fafc;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .module-content {
+            padding: 15px;
+            display: none;
+        }
+
+        .module.active .module-content {
+            display: block;
+        }
+
+        .lesson {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .lesson i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .enroll-card {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .feature i {
+            color: var(--success);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .course-hero {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho Simplificado -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>CodeHub</span>
+            </div>
+            <div>
+                <button class="btn">Entrar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container">
+        <div class="course-hero">
+            <div>
+                <h1 class="course-title">JavaScript Essencial</h1>
+                <p class="course-subtitle">Aprenda a linguagem da web de forma prática e humanizada</p>
+                
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Instrutora">
+                    <div>
+                        <p><strong>Prof. Ana Costa</strong></p>
+                        <p>Desenvolvedora Full Stack há 8 anos</p>
+                    </div>
+                </div>
+                
+                <!-- Sobre o Curso -->
+                <div class="section">
+                    <h2 class="section-title">Por que aprender JavaScript?</h2>
+                    <p>JavaScript é a linguagem mais popular da web, e neste curso você vai aprender não apenas a sintaxe, mas como pensar como desenvolvedor. Nosso foco é em:</p>
+                    <ul style="margin: 15px 0 15px 20px;">
+                        <li>Fundamentos sólidos sem complicação</li>
+                        <li>Projetos reais desde o início</li>
+                        <li>Boas práticas de desenvolvimento</li>
+                        <li>Como resolver problemas reais</li>
+                    </ul>
+                    <p>Não é apenas um curso, é o início da sua jornada como desenvolvedor!</p>
+                </div>
+                
+                <!-- Módulos do Curso -->
+                <div class="section">
+                    <h2 class="section-title">O que você vai aprender</h2>
+                    
+                    <div class="module active">
+                        <div class="module-header">
+                            <span>Módulo 1: Fundamentos</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="module-content">
+                            <div class="lesson">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Introdução ao JavaScript</span>
+                            </div>
+                            <div class="lesson">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Variáveis e Tipos de Dados</span>
+                            </div>
+                            <div class="lesson">
+                                <i class="fas fa-project-diagram"></i>
+                                <span>Exercício Prático: Calculadora Simples</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="module">
+                        <div class="module-header">
+                            <span>Módulo 2: DOM e Eventos</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="module-content">
+                            <div class="lesson">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Manipulando o DOM</span>
+                            </div>
+                            <div class="lesson">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Eventos e Listeners</span>
+                            </div>
+                            <div class="lesson">
+                                <i class="fas fa-project-diagram"></i>
+                                <span>Projeto: Lista de Tarefas</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="module">
+                        <div class="module-header">
+                            <span>Módulo 3: JavaScript Moderno</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="module-content">
+                            <div class="lesson">
+                                <i class="fas fa-play-circle"></i>
+                                <span>ES6+ Essentials</span>
+                            </div>
+                            <div class="lesson">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Async/Await</span>
+                            </div>
+                            <div class="lesson">
+                                <i class="fas fa-project-diagram"></i>
+                                <span>Projeto Final: App de Clima</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Depoimentos -->
+                <div class="section">
+                    <h2 class="section-title">O que os alunos dizem</h2>
+                    <div style="background: #f8fafc; padding: 15px; border-radius: var(--radius-md); margin-bottom: 15px;">
+                        <p>"Finalmente um curso de JS que explica conceitos complexos de forma simples. A Ana tem uma didática incrível!"</p>
+                        <p style="font-weight: 500; margin-top: 10px;">- Carlos, ex-aluno</p>
+                    </div>
+                    <div style="background: #f8fafc; padding: 15px; border-radius: var(--radius-md);">
+                        <p>"Os projetos práticos me deram confiança para começar a trabalhar com JavaScript. Recomendo!"</p>
+                        <p style="font-weight: 500; margin-top: 10px;">- Juliana, ex-aluna</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="enroll-card">
+                    <h3 style="margin-bottom: 15px;">Comece agora</h3>
+                    <div class="price">R$ 97,90</div>
+                    <button class="btn" style="width: 100%; margin-bottom: 15px;">
+                        <i class="fas fa-shopping-cart"></i> Comprar Curso
+                    </button>
+                    <p style="font-size: 0.9rem; margin-bottom: 15px;">Ou em até 12x no cartão</p>
+                    
+                    <div style="margin: 20px 0;">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>6 horas de conteúdo</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>3 projetos práticos</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Suporte da comunidade</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Certificado de conclusão</span>
+                        </div>
+                    </div>
+                    
+                    <div style="font-size: 0.9rem; color: var(--text-light);">
+                        <p><i class="fas fa-shield-alt"></i> Garantia de 7 dias</p>
+                    </div>
+                </div>
+                
+                <div class="section" style="padding: 15px;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 15px;">Para quem é este curso?</h3>
+                    <ul style="margin-left: 20px; font-size: 0.9rem;">
+                        <li>Iniciantes em programação</li>
+                        <li>Designers que querem codar</li>
+                        <li>Devs de outras linguagens</li>
+                        <li>Curiosos sobre tecnologia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Interatividade dos módulos
+        document.querySelectorAll('.module-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const module = header.parentElement;
+                module.classList.toggle('active');
+                
+                // Atualiza ícone
+                const icon = header.querySelector('i');
+                if (module.classList.contains('active')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Simulação de compra
+        document.querySelector('.btn').addEventListener('click', () => {
+            alert('Ótima escolha! Vamos te redirecionar para o checkout.');
+        });
+        
+        // Mensagem humanizada no carregamento
+        window.addEventListener('load', () => {
+            console.log('Tudo pronto! Bem-vindo ao curso de JavaScript 😊');
+        });
+    </script>
+</body>
+</html>

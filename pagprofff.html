@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Novo Curso | Plataforma de Ensino</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-hover: #3a56d4;
+      --secondary: #3f37c9;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --light-gray: #e9ecef;
+      --success: #4cc9f0;
+      --border-radius: 12px;
+      --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: var(--dark);
+    }
+    
+    .container-criacao-curso {
+      background: white;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .container-criacao-curso::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--success) 100%);
+    }
+    
+    .cabecalho-criacao {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .titulo-principal {
+      color: var(--dark);
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .subtitulo {
+      color: var(--gray);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    
+    .barra-progresso {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .barra-progresso::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--light-gray);
+      z-index: 1;
+    }
+    
+    .progresso-completo {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--success) 100%);
+      z-index: 2;
+      transition: var(--transition);
+    }
+    
+    .etapa-progresso {
+      text-align: center;
+      cursor: pointer;
+      flex: 1;
+      position: relative;
+      z-index: 3;
+    }
+    
+    .numero-etapa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--light-gray);
+      color: var(--gray);
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      border: 4px solid white;
+      transition: var(--transition);
+    }
+    
+    .rotulo-etapa {
+      color: var(--gray);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .etapa-progresso.ativa .numero-etapa,
+    .etapa-progresso.completo .numero-etapa {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .etapa-progresso.ativa .rotulo-etapa,
+    .etapa-progresso.completo .rotulo-etapa {
+      color: var(--dark);
+      font-weight: 600;
+    }
+    
+    .etapa-progresso.completo .numero-etapa::after {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+    }
+    
+    .passo-formulario {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    
+    .passo-formulario.ativo {
+      display: block;
+    }
+    
+    .grupo-formulario {
+      margin-bottom: 1.8rem;
+    }
+    
+    .rotulo-campo {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 0.95rem;
+    }
+    
+    .campo-entrada {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--light-gray);
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: var(--transition);
+      background: white;
+    }
+    
+    .campo-entrada:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    .campo-entrada::placeholder {
+      color: #adb5bd;
+    }
+    
+    textarea.campo-entrada {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .botoes-navegacao {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+      gap: 15px;
+    }
+    
+    .botao-navegacao {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: var(--transition);
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .botao-navegacao:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    }
+    
+    .botao-navegacao:active {
+      transform: translateY(0);
+    }
+    
+    .botao-navegacao:disabled {
+      background: var(--light-gray);
+      color: var(--gray);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .botao-navegacao.secundario {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--light-gray);
+    }
+    
+    .botao-navegacao.secundario:hover {
+      background: var(--light);
+      border-color: var(--primary);
+      box-shadow: none;
+    }
+    
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .checkbox-container input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--primary);
+    }
+    
+    .arquivo-upload {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .custom-file-upload {
+      border: 2px dashed var(--light-gray);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .custom-file-upload:hover {
+      border-color: var(--primary);
+      background: rgba(67, 97, 238, 0.05);
+    }
+    
+    .custom-file-upload i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .custom-file-upload p {
+      color: var(--gray);
+      margin-bottom: 5px;
+    }
+    
+    .custom-file-upload span {
+      font-size: 0.8rem;
+      color: #adb5bd;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @media (max-width: 768px) {
+      .container-criacao-curso {
+        padding: 30px 20px;
+      }
+      
+      .barra-progresso {
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 2rem;
+      }
+      
+      .barra-progresso::before,
+      .progresso-completo {
+        display: none;
+      }
+      
+      .etapa-progresso {
+        flex: none;
+        width: calc(50% - 10px);
+      }
+      
+      .titulo-principal {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container-criacao-curso">
+    <div class="cabecalho-criacao">
+      <h1 class="titulo-principal">Criar Novo Curso</h1>
+      <p class="subtitulo">Preencha as informações abaixo para criar seu curso</p>
+    </div>
+
+    <div class="barra-progresso">
+      <div class="progresso-completo" id="progresso-completo"></div>
+      <div class="etapa-progresso ativa" onclick="mostrarEtapa(0)" data-etapa="0">
+        <div class="numero-etapa">1</div>
+        <div class="rotulo-etapa">Informações</div>
+      </div>
+      <div class="etapa-progresso" onclick="mostrarEtapa(1)" data-etapa="1">
+        <div class="numero-etapa">2</div>
+        <div class="rotulo-etapa">Conteúdo</div>
+      </div>
+      <div class="etapa-progresso" onclick="mostrarEtapa(2)" data-etapa="2">
+        <div class="numero-etapa">3</div>
+        <div class="rotulo-etapa">Configurações</div>
+      </div>
+      <div class="etapa-progresso" onclick="mostrarEtapa(3)" data-etapa="3">
+        <div class="numero-etapa">4</div>
+        <div class="rotulo-etapa">Publicar</div>
+      </div>
+    </div>
+
+    <form onsubmit="return validarEnvioFinal()" enctype="multipart/form-data">
+
+      <!-- ETAPA 1 -->
+      <div class="passo-formulario ativo">
+        <div class="grupo-formulario">
+          <label class="rotulo-campo" for="titulo">Título do Curso *</label>
+          <input type="text" id="titulo" class="campo-entrada" placeholder="Ex: Introdução ao Marketing Digital">
+        </div>
+        <div class="grupo-formulario">
+          <label class="rotulo-campo" for="descricao">Descrição *</label>
+          <textarea id="descricao" class="campo-entrada" placeholder="Descreva o conteúdo do curso, objetivos e público-alvo..."></textarea>
+        </div>
+      </div>
+
+      <!-- ETAPA 2: Conteúdo -->
+      <div class="passo-formulario">
+        <div class="grupo-formulario">
+          <label class="rotulo-campo">Estrutura do Conteúdo *</label>
+          <textarea class="campo-entrada" placeholder="Descreva os módulos, aulas e atividades do curso..."></textarea>
+        </div>
+        <div class="grupo-formulario">
+          <label class="rotulo-campo">Foto de capa do curso</label>
+          <div class="arquivo-upload">
+            <label class="custom-file-upload">
+              <i class="fas fa-image"></i>
+              <p>Arraste e solte a imagem aqui ou clique para selecionar</p>
+              <span>Tamanho recomendado: 1280x720 pixels (JPG ou PNG)</span>
+              <input type="file" accept="image/*" style="display: none;">
+            </label>
+          </div>
+        </div>
+        <div class="grupo-formulario">
+          <label class="rotulo-campo">Vídeo-aulas</label>
+          <div class="arquivo-upload">
+            <label class="custom-file-upload">
+              <i class="fas fa-video"></i>
+              <p>Arraste e solte os vídeos aqui ou clique para selecionar</p>
+              <span>Formatos suportados: MP4, MOV, AVI (máx. 2GB cada)</span>
+              <input type="file" accept="video/*" multiple style="display: none;">
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ETAPA 3 -->
+      <div class="passo-formulario">
+        <div class="grupo-formulario">
+          <label class="rotulo-campo">Carga horária (horas) *</label>
+          <input type="number" class="campo-entrada" placeholder="Ex: 20">
+        </div>
+        <div class="grupo-formulario">
+          <label class="rotulo-campo">Nível do curso *</label>
+          <select class="campo-entrada">
+            <option value="">Selecione o nível</option>
+            <option value="iniciante">Iniciante</option>
+            <option value="intermediario">Intermediário</option>
+            <option value="avancado">Avançado</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ETAPA 4 -->
+      <div class="passo-formulario">
+        <div class="grupo-formulario">
+          <label class="rotulo-campo">Pronto para publicar?</label>
+          <div class="checkbox-container">
+            <input type="checkbox" id="confirmar-publicacao">
+            <label for="confirmar-publicacao">Sim, publicar este curso agora</label>
+          </div>
+        </div>
+        <div class="grupo-formulario">
+          <label class="rotulo-campo">Mensagem de boas-vindas (opcional)</label>
+          <textarea class="campo-entrada" placeholder="Escreva uma mensagem de boas-vindas para os alunos..."></textarea>
+        </div>
+      </div>
+
+      <div class="botoes-navegacao">
+        <button type="button" class="botao-navegacao secundario" id="btnAnterior" onclick="navegarEtapa(-1)">
+          <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+        <button type="button" class="botao-navegacao" id="btnProximo" onclick="navegarEtapa(1)">
+          Avançar <i class="fas fa-arrow-right"></i>
+        </button>
+        <button type="submit" class="botao-navegacao" id="btnEnviar" style="display: none;">
+          <i class="fas fa-check"></i> Publicar Curso
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    let etapaAtual = 0;
+    const totalEtapas = 4;
+
+    function atualizarProgresso() {
+      const progresso = (etapaAtual / (totalEtapas - 1)) * 100;
+      document.getElementById('progresso-completo').style.width = `${progresso}%`;
+      
+      // Marcar etapas anteriores como completas
+      document.querySelectorAll('.etapa-progresso').forEach((etapa, index) => {
+        if (index < etapaAtual) {
+          etapa.classList.add('completo');
+          etapa.classList.remove('ativa');
+        } else if (index === etapaAtual) {
+          etapa.classList.add('ativa');
+          etapa.classList.remove('completo');
+        } else {
+          etapa.classList.remove('ativa', 'completo');
+        }
+      });
+    }
+
+    function mostrarEtapa(indice) {
+      const formularios = document.querySelectorAll('.passo-formulario');
+      formularios.forEach(f => f.classList.remove('ativo'));
+
+      formularios[indice].classList.add('ativo');
+      etapaAtual = indice;
+      atualizarBotoes();
+      atualizarProgresso();
+    }
+
+    function navegarEtapa(direcao) {
+      const novasEtapas = etapaAtual + direcao;
+
+      if (direcao === 1 && !validarEtapa(etapaAtual)) {
+        return; 
+      }
+
+      if (novasEtapas >= 0 && novasEtapas < totalEtapas) {
+        mostrarEtapa(novasEtapas);
+      }
+    }
+
+    function atualizarBotoes() {
+      const btnAnterior = document.getElementById('btnAnterior');
+      const btnProximo = document.getElementById('btnProximo');
+      const btnEnviar = document.getElementById('btnEnviar');
+      
+      btnAnterior.disabled = (etapaAtual === 0);
+      
+      if (etapaAtual === totalEtapas - 1) {
+        btnProximo.style.display = 'none';
+        btnEnviar.style.display = 'flex';
+      } else {
+        btnProximo.style.display = 'flex';
+        btnEnviar.style.display = 'none';
+      }
+    }
+
+    function validarEtapa(etapa) {
+      if (etapa === 0) {
+        const titulo = document.getElementById('titulo');
+        const descricao = document.getElementById('descricao');
+        
+        if (titulo.value.trim() === "") {
+          alert("Por favor, preencha o título do curso.");
+          titulo.focus();
+          return false;
+        }
+        
+        if (descricao.value.trim() === "") {
+          alert("Por favor, preencha a descrição do curso.");
+          descricao.focus();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function validarEnvioFinal() {
+      if (!document.getElementById('confirmar-publicacao').checked) {
+        alert("Por favor, confirme que deseja publicar o curso marcando a caixa de confirmação.");
+        return false;
+      }
+      
+      // Simulação de envio
+      alert("Curso publicado com sucesso!");
+      return false; 
+    }
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+      atualizarProgresso();
+      atualizarBotoes();
+      
+      // Adiciona interação aos campos de upload de arquivo
+      document.querySelectorAll('.custom-file-upload input[type="file"]').forEach(input => {
+        input.addEventListener('change', function() {
+          const label = this.closest('.custom-file-upload');
+          if (this.files.length > 0) {
+            label.style.borderColor = 'var(--success)';
+            label.style.background = 'rgba(76, 201, 240, 0.05)';
+            
+            // Mostrar nome do arquivo
+            const fileName = this.files.length === 1 
+              ? this.files[0].name 
+              : `${this.files.length} arquivos selecionados`;
+              
+            label.querySelector('p').textContent = fileName;
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

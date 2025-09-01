@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Imagem Rolável</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo-container {
+      width: 80px; /* Ajuste conforme necessário */
+      height: 40px; /* Ajuste conforme necessário */
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .logo-container img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .imagem-container {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .imagem-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .menu-container {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+
+    .menu-item {
+      color: #ddd;
+      position: relative;
+      cursor: pointer;
+      padding: 10px;
+      transition: color 0.3s;
+    }
+
+    .menu-item:hover {
+      color: #007BFF;
+    }
+
+    .arrow {
+      margin-left: 6px;
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    .open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .panel {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      display: none;
+    }
+
+    .panel.show {
+      display: block;
+    }
+
+    
+    /* Botão de voltar ao topo */
+    .voltar-topo {
+      margin-top: 400px;
+      position: relative;
+      bottom: 50px; ''
+      margin-left: 1100px;
+  
+      right: 40px;
+      background-color: #002982;
+      color: white;
+      padding: 10px 50px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-family: bold;
+      transition: background 0.3s;
+      z-index: 999;
+    }
+
+    .voltar-topo:hover {
+      background-color: #0b4583;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Âncora do topo -->
+  <div id="topo"></div>
+
+  <!-- HEADER COM LOGO NO CANTO DIREITO -->
+  <div class="header-container">
+    <div></div> <!-- Espaço vazio à esquerda para equilibrar -->
+    <div class="logo-container">
+      <!-- Substitua pelo caminho da sua logo -->
+      <img src="caminho/para/sua-logo.png" alt="Logo do Site">
+    </div>
+  </div>
+
+  <!-- MENU NO TOPO -->
+  <div class="menu-container">
+    <div class="menu-item" id="comunidade-toggle">
+      Comunidade
+      <span class="arrow">▼</span>
+    </div>
+    <div class="menu-item">
+     <a href="CADASTROCERTOOOOOO.html" style="color: white; text-decoration: none;">
+      Cadastrar-se
+      </a>
+    </div>
+    <div class="menu-item" id="duvidas-toggle">
+      Dúvidas
+      <span class="arrow">▼</span>
+    </div>
+  </div>
+
+  <!-- IMAGEM GRANDE -->
+  <div class="imagem-container">
+    <img src="D:\Pictures\Screenshots\backend\Nova pasta\paracompatcarcurso\maisumsaibamais.png" alt="Imagem grande">
+  </div>
+
+  <!-- PAINÉIS EXPANSÍVEIS -->
+  <div id="comunidade-panel" class="panel">
+    <strong>Comunidade:</strong> Aqui você encontra tópicos, fóruns e debates entre os membros.
+  </div>
+
+  <div id="duvidas-panel" class="panel">
+    <strong>Dúvidas:</strong> Veja as perguntas frequentes ou envie sua dúvida diretamente para nossa equipe.
+  </div>
+
+  <!-- MENU NO FINAL DA PÁGINA -->
+  <div class="menu-container">
+    <div class="menu-item">
+      Comunidade
+    </div>
+    <div class="menu-item">
+      <a href="CADASTROCERTOOOOOO.html" style="color: white; text-decoration: none;">
+      Cadastro
+      </a>
+    </div>
+    <div class="menu-item">
+      Dúvidas
+    </div>
+  </div>
+
+  <!-- BOTÃO VOLTAR AO TOPO -->
+  <a href="#topo" class="voltar-topo">Voltar ao início</a>
+
+  <!-- SCRIPT DE EXPANSÃO -->
+  <script>
+    function togglePanel(toggleId, panelId) {
+      const toggle = document.getElementById(toggleId);
+      const panel = document.getElementById(panelId);
+
+      toggle.classList.toggle('open');
+      panel.classList.toggle('show');
+    }
+
+    document.getElementById('comunidade-toggle').addEventListener('click', () => {
+      togglePanel('comunidade-toggle', 'comunidade-panel');
+    });
+
+    document.getElementById('duvidas-toggle').addEventListener('click', () => {
+      togglePanel('duvidas-toggle', 'duvidas-panel');
+    });
+  </script>
+
+</body>
+</html>

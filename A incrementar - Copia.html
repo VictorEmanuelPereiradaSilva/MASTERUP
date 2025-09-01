@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso de HTML Interativo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .avaliacao i {
+      color: #ccc;
+      cursor: pointer;
+    }
+    .avaliacao i.ativo {
+      color: gold;
+    }
+    .comentarios {
+      margin-top: 20px;
+    }
+    .comentario-item {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    .faq h3 {
+      cursor: pointer;
+      background: #eee;
+      padding: 10px;
+      margin: 0;
+    }
+    .faq p {
+      display: none;
+      padding: 10px;
+      background: #fafafa;
+      margin: 0;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px 0;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Curso de HTML Interativo</h1>
+  </header>
+  <section>
+    <h2>Avalie este curso</h2>
+    <div class="avaliacao" id="avaliacao">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    </div>
+
+    <h2>Comentários</h2>
+    <textarea id="comentarioTexto" rows="4" style="width:100%;"></textarea><br>
+    <button onclick="adicionarComentario()">Enviar Comentário</button>
+    <div class="comentarios" id="listaComentarios"></div>
+
+    <h2>FAQ</h2>
+    <div class="faq">
+      <h3>Como funciona o curso?</h3>
+      <p>O curso é dividido em módulos com videoaulas, exercícios e suporte via comentários.</p>
+      <h3>Preciso pagar?</h3>
+      <p>Não, este curso é totalmente gratuito e livre para todos os usuários.</p>
+    </div>
+
+    <h2>Outras Ações</h2>
+    <button onclick="baixarPDF()">Baixar em PDF</button>
+    <button onclick="compartilharCurso()">Compartilhar</button>
+  </section>
+
+  <script>
+    // Avaliação
+    const estrelas = document.querySelectorAll('#avaliacao i');
+    const avaliacaoSalva = localStorage.getItem('avaliacao');
+    if (avaliacaoSalva) marcarEstrelas(avaliacaoSalva);
+    estrelas.forEach((estrela, index) => {
+      estrela.addEventListener('click', () => {
+        localStorage.setItem('avaliacao', index + 1);
+        marcarEstrelas(index + 1);
+      });
+    });
+    function marcarEstrelas(n) {
+      estrelas.forEach((e, i) => {
+        e.classList.toggle('ativo', i < n);
+      });
+    }
+
+    // Comentários
+    const lista = document.getElementById('listaComentarios');
+    const comentariosSalvos = JSON.parse(localStorage.getItem('comentarios')) || [];
+    comentariosSalvos.forEach(c => criarComentario(c.texto, c.data));
+    function adicionarComentario() {
+      const texto = document.getElementById('comentarioTexto').value;
+      if (!texto) return;
+      const data = new Date().toLocaleString();
+      const comentario = { texto, data };
+      comentariosSalvos.push(comentario);
+      localStorage.setItem('comentarios', JSON.stringify(comentariosSalvos));
+      criarComentario(texto, data);
+      document.getElementById('comentarioTexto').value = '';
+    }
+    function criarComentario(texto, data) {
+      const div = document.createElement('div');
+      div.className = 'comentario-item';
+      div.innerHTML = `<strong>Anônimo:</strong> ${texto}<br><small>${data}</small>`;
+      lista.appendChild(div);
+    }
+
+    // FAQ interativo
+    document.querySelectorAll('.faq h3').forEach(pergunta => {
+      pergunta.addEventListener('click', () => {
+        const resposta = pergunta.nextElementSibling;
+        resposta.style.display = resposta.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Compartilhar
+    function compartilharCurso() {
+      const shareData = {
+        title: 'Curso de HTML Interativo',
+        text: 'Veja esse curso gratuito de HTML que encontrei!',
+        url: window.location.href
+      };
+      if (navigator.share) {
+        navigator.share(shareData)
+          .then(() => alert('Curso compartilhado com sucesso!'))
+          .catch(console.error);
+      } else {
+        alert('Compartilhamento não suportado neste navegador.');
+      }
+    }
+
+    // Baixar em PDF (simulação com print)
+    function baixarPDF() {
+      window.print();
+    }
+  </script>
+</body>
+</html>
